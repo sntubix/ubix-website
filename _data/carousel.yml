@@ -1,0 +1,8 @@
+# Photo carousel on the homepage.
+# Add/remove items freely. Images live in /assets/images/carousel/.
+- image: /assets/images/carousel/team.png
+  caption: UBIX research team
+- image: /assets/images/carousel/360lab.jpg
+  caption: 360Lab — instrumented vehicle platform
+- image: /assets/images/carousel/energylab.png
+  caption: EnergyLab — data-driven energy systems

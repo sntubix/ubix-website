@@ -1,0 +1,73 @@
+# Decap CMS configuration.
+#
+# Auth: uses GitHub OAuth via an external OAuth proxy (required for GitHub Pages).
+# See README.md "Admin setup" for one-click proxy deploy instructions.
+# After deploying the proxy, set `base_url` below to its URL.
+
+backend:
+  name: github
+  repo: sntubix/ubix-website
+  branch: main
+  base_url: https://YOUR-OAUTH-PROXY.vercel.app   # <-- replace after deploying proxy
+  auth_endpoint: api/auth
+
+# Where uploaded files are stored in the repo
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+publish_mode: simple
+
+site_url: https://ubix.group
+display_url: https://ubix.group
+logo_url: /assets/images/ubix-logo.png
+
+collections:
+  - name: news
+    label: News
+    folder: _news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "news/{{slug}}"
+    sortable_fields: ['date', 'title']
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: false, hint: "Optional — leave empty for a short post without a title" }
+      - { label: "Date", name: "date", widget: "datetime", default: "" }
+      - label: "Post type"
+        name: "source"
+        widget: "select"
+        default: "native"
+        options:
+          - { label: "Native post (text + media)", value: "native" }
+          - { label: "LinkedIn embed", value: "linkedin" }
+      - label: "LinkedIn embed code"
+        name: "linkedin_embed"
+        widget: "text"
+        required: false
+        hint: "Paste the full <iframe> embed code from a LinkedIn post (Post menu → Embed this post → Copy code). Only used when Post type is 'LinkedIn embed'."
+      - label: "Media"
+        name: "media"
+        widget: "list"
+        required: false
+        summary: "{{fields.type}} — {{fields.src}}"
+        fields:
+          - { label: "Type", name: "type", widget: "select", options: ["image", "video"], default: "image" }
+          - { label: "File", name: "src", widget: "file" }
+          - { label: "Alt text (images)", name: "alt", widget: "string", required: false }
+          - { label: "Poster image (video)", name: "poster", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false, hint: "Your post text. Supports markdown. Ignored when using a LinkedIn embed." }
+
+  - name: config
+    label: Site
+    editor: { preview: false }
+    files:
+      - label: Carousel
+        name: carousel
+        file: _data/carousel.yml
+        fields:
+          - label: Photos
+            name: items
+            widget: list
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }

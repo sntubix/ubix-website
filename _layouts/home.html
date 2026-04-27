@@ -1,0 +1,132 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">UBIX Research Group · SnT · University of Luxembourg</p>
+    <h1 class="hero-title">Ubiquitous and <em>Intelligent</em> Systems</h1>
+    <p class="hero-lead">
+      UBIX researches intelligent cyber-physical systems for smart mobility, autonomous machines, distributed intelligence, and energy systems, with a strong focus on embodied AI.
+    </p>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <figure class="about-media">
+        <img src="{{ '/assets/images/about.jpg' | relative_url }}" alt="UBIX research activities" loading="lazy">
+      </figure>
+      <div class="about-copy">
+        <h2>About the group</h2>
+        <p>
+          The UBIX Research Group headed by <a href="https://www.uni.lu/snt-en/people/raphael-frank/" target="_blank" rel="noopener"><strong>Prof. Raphael Frank</strong></a> investigates how intelligence emerges from the interaction of software, sensing, control, and physical systems. The group's research spans distributed and embodied AI, autonomous machines, cooperative perception, and data-driven energy systems — with a recurring focus on the algorithms, architectures, and infrastructures that let intelligent behaviour scale from a single device to large connected environments.
+        </p>
+        <p>
+          Methodological work is grounded in real systems. The group operates two experimental facilities — the <a href="https://www.uni.lu/snt-en/facilities/360lab/" target="_blank" rel="noopener"><strong>360Lab</strong></a> for autonomous mobility and robotics, and the <a href="https://www.uni.lu/snt-en/facilities/energylab/" target="_blank" rel="noopener"><strong>EnergyLab</strong></a> for energy and grid research — which provide the platforms, data, and instrumentation used to validate models in operational conditions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="snt" class="section section-snt">
+  <div class="container">
+    <a class="snt-link" href="https://www.uni.lu/snt-en/research-groups/ubix/" target="_blank" rel="noopener">
+      <span class="snt-link-text">
+        <strong>More information on the group, team and ongoing projects</strong>
+        <span class="snt-link-sub">Find the full team profile and more information on the current research projects on the SnT website →</span>
+      </span>
+      <img src="{{ '/assets/images/snt-uni.png' | relative_url }}" alt="SnT — Interdisciplinary Centre for Security, Reliability and Trust · Université du Luxembourg">
+    </a>
+  </div>
+</section>
+
+<section id="research" class="section section-alt">
+  <div class="container">
+    <h2>Research areas</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Autonomous Systems</h3>
+        <p>Autonomous driving, mobile robotics, cooperative perception, and intelligent machines operating safely in dynamic real-world environments.</p>
+      </article>
+      <article class="card">
+        <h3>Distributed Systems</h3>
+        <p>Scalable, reliable, and privacy-aware distributed computing for connected devices, edge platforms, and large-scale infrastructures.</p>
+      </article>
+      <article class="card">
+        <h3>Embodied & Physical AI</h3>
+        <p>Learning, control, and reasoning for robots and physical agents that sense, act, and adapt in the real world.</p>
+      </article>
+      <article class="card">
+        <h3>Energy Systems</h3>
+        <p>AI for smart grids, forecasting, flexibility management, resilient operations, and optimisation of modern energy networks.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{%- assign carousel = site.data.carousel -%}
+{%- if carousel and carousel.size > 0 -%}
+<section id="gallery" class="section">
+  <div class="container">
+    <h2>Gallery</h2>
+  </div>
+  <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Group photos">
+    <button class="carousel-btn carousel-prev" aria-label="Previous" data-carousel-prev>‹</button>
+    <div class="carousel-track" data-carousel-track>
+      {%- for item in carousel -%}
+      <figure class="carousel-slide">
+        <img src="{{ item.image | relative_url }}" alt="{{ item.caption | default: '' }}" loading="lazy">
+        {%- if item.caption -%}<figcaption>{{ item.caption }}</figcaption>{%- endif -%}
+      </figure>
+      {%- endfor -%}
+    </div>
+    <button class="carousel-btn carousel-next" aria-label="Next" data-carousel-next>›</button>
+  </div>
+</section>
+{%- endif -%}
+
+<section id="news" class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Latest news</h2>
+    </div>
+    {%- assign news = site.news | sort: 'date' | reverse -%}
+    {%- if news.size == 0 -%}
+      <p class="muted">No news yet. Add your first post from the <a href="{{ '/admin/' | relative_url }}">admin panel</a>.</p>
+    {%- else -%}
+    <div class="news-list">
+      {%- for post in news -%}
+      <article class="news-card">
+        <header class="news-card-head">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+          {%- if post.title -%}<h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>{%- endif -%}
+        </header>
+
+        {%- if post.source == 'linkedin' and post.linkedin_embed -%}
+          <div class="news-embed">{{ post.linkedin_embed }}</div>
+        {%- else -%}
+          {%- if post.media and post.media.size > 0 -%}
+          <div class="news-media">
+            {%- for m in post.media -%}
+              {%- if m.type == 'video' -%}
+                <video controls preload="metadata" {% if m.poster %}poster="{{ m.poster | relative_url }}"{% endif %}>
+                  <source src="{{ m.src | relative_url }}">
+                </video>
+              {%- else -%}
+                <img src="{{ m.src | relative_url }}" alt="{{ m.alt | default: '' }}" loading="lazy">
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- endif -%}
+          <div class="news-body">
+            {{ post.content }}
+          </div>
+        {%- endif -%}
+      </article>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>

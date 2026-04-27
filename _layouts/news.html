@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<article class="section">
+  <div class="container narrow">
+    <p class="eyebrow"><a href="{{ '/#news' | relative_url }}">← Back to news</a></p>
+    <header class="news-head">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {%- if page.title -%}<h1>{{ page.title }}</h1>{%- endif -%}
+    </header>
+
+    {%- if page.source == 'linkedin' and page.linkedin_embed -%}
+      <div class="news-embed">{{ page.linkedin_embed }}</div>
+    {%- else -%}
+      {%- if page.media and page.media.size > 0 -%}
+      <div class="news-media">
+        {%- for m in page.media -%}
+          {%- if m.type == 'video' -%}
+            <video controls preload="metadata" {% if m.poster %}poster="{{ m.poster | relative_url }}"{% endif %}>
+              <source src="{{ m.src | relative_url }}">
+            </video>
+          {%- else -%}
+            <img src="{{ m.src | relative_url }}" alt="{{ m.alt | default: '' }}" loading="lazy">
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+      <div class="news-body">
+        {{ content }}
+      </div>
+    {%- endif -%}
+  </div>
+</article>

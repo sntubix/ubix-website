@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="UBIX — Ubiquitous and Intelligent Systems">
+      <img class="brand-logo" src="{{ '/assets/images/ubix-logo.png' | relative_url }}" alt="UBIX"
+           onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-mark',textContent:'UBIX'}))">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav">
+      <a href="{{ '/#about' | relative_url }}">About</a>
+      <a href="{{ '/#research' | relative_url }}">Research</a>
+      <a href="{{ '/#news' | relative_url }}">News</a>
+      <a href="{{ site.social.publications }}" target="_blank" rel="noopener">Publications</a>
+      <a href="{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>

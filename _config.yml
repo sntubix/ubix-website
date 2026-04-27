@@ -1,0 +1,47 @@
+title: UBIX
+tagline: Ubiquitous and Intelligent Systems
+description: >-
+  The UBIX Research Group at SnT, University of Luxembourg, conducts research
+  in distributed artificial intelligence across smart mobility, digital twins,
+  and data-driven energy systems.
+url: "https://ubix.group"
+baseurl: ""
+
+# Build
+markdown: kramdown
+highlighter: rouge
+permalink: /news/:slug/
+timezone: Europe/Luxembourg
+
+# Collections
+collections:
+  news:
+    output: true
+    permalink: /news/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: news
+
+# Jekyll plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Links
+social:
+  github: https://github.com/sntubix
+  publications: https://orbilu.uni.lu/simple-search?query=Raphael+Frank&order=desc&sort_by=issued_dt
+  contact: mailto:contact@ubix.group
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
