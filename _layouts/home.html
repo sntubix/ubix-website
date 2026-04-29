@@ -92,7 +92,7 @@ layout: default
     <div class="section-head">
       <h2>Latest news</h2>
     </div>
-    {%- assign news = site.news | sort: 'date' | reverse -%}
+    {%- assign news = site.news | sort: 'date' | reverse | slice: 0, 10 -%}
     {%- if news.size == 0 -%}
       <p class="muted">No news yet. Add your first post from the <a href="{{ '/admin/' | relative_url }}">admin panel</a>.</p>
     {%- else -%}

@@ -244,6 +244,7 @@ em { font-style: italic; color: var(--accent); }
 .carousel-btn:hover { background: var(--accent-soft); }
 
 /* News */
+#news .container { max-width: 700px; }
 .news-list { display: grid; gap: 1.25rem; }
 .news-card {
   background: var(--bg);
