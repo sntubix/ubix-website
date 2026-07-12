@@ -1,14 +1,14 @@
 (function () {
   // News pagination
   const list = document.querySelector('[data-news-list]');
-  const nav = document.querySelector('[data-pagination]');
-  if (list && nav) {
+  const pageNav = document.querySelector('[data-pagination]');
+  if (list && pageNav) {
     const items = Array.from(list.querySelectorAll('[data-news-item]'));
     const pageSize = parseInt(list.dataset.pageSize, 10) || 10;
     const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
-    const prev = nav.querySelector('[data-page-prev]');
-    const next = nav.querySelector('[data-page-next]');
-    const numbers = nav.querySelector('[data-page-numbers]');
+    const prevBtn = pageNav.querySelector('[data-page-prev]');
+    const nextBtn = pageNav.querySelector('[data-page-next]');
+    const numbers = pageNav.querySelector('[data-page-numbers]');
     let current = 1;
 
     function render(page) {
@@ -18,8 +18,8 @@
       items.forEach((el, i) => {
         el.hidden = i < start || i >= end;
       });
-      prev.disabled = current === 1;
-      next.disabled = current === totalPages;
+      prevBtn.disabled = current === 1;
+      nextBtn.disabled = current === totalPages;
       renderNumbers();
       const news = document.getElementById('news');
       if (news) news.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -55,14 +55,14 @@
       }
     }
 
-    prev.addEventListener('click', () => render(current - 1));
-    next.addEventListener('click', () => render(current + 1));
+    prevBtn.addEventListener('click', () => render(current - 1));
+    nextBtn.addEventListener('click', () => render(current + 1));
     // Initial render without scroll
     (function initial() {
       current = 1;
       items.forEach((el, i) => { el.hidden = i >= pageSize; });
-      prev.disabled = true;
-      next.disabled = totalPages === 1;
+      prevBtn.disabled = true;
+      nextBtn.disabled = totalPages === 1;
       renderNumbers();
     })();
   }
