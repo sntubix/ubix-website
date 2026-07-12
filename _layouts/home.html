@@ -92,13 +92,13 @@ layout: default
     <div class="section-head">
       <h2>Latest news</h2>
     </div>
-    {%- assign news = site.news | sort: 'date' | reverse | slice: 0, 10 -%}
+    {%- assign news = site.news | sort: 'date' | reverse -%}
     {%- if news.size == 0 -%}
       <p class="muted">No news yet. Add your first post from the <a href="{{ '/admin/' | relative_url }}">admin panel</a>.</p>
     {%- else -%}
-    <div class="news-list">
+    <div class="news-list" data-news-list data-page-size="10">
       {%- for post in news -%}
-      <article class="news-card">
+      <article class="news-card" data-news-item data-index="{{ forloop.index0 }}">
         <header class="news-card-head">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
           {%- if post.title -%}<h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>{%- endif -%}
@@ -127,6 +127,13 @@ layout: default
       </article>
       {%- endfor -%}
     </div>
+    {%- if news.size > 10 -%}
+    <nav class="pagination" data-pagination aria-label="News pages">
+      <button type="button" class="pagination-btn" data-page-prev>‹ Prev</button>
+      <span class="pagination-pages" data-page-numbers></span>
+      <button type="button" class="pagination-btn" data-page-next>Next ›</button>
+    </nav>
+    {%- endif -%}
     {%- endif -%}
   </div>
 </section>
