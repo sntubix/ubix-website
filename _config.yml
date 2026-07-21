@@ -26,10 +26,10 @@ person:
   image: https://ubix.group/assets/images/raphael-frank.jpg
   same_as:
     - https://www.uni.lu/snt-en/people/raphael-frank/
+    - https://orcid.org/0000-0001-8239-2041
+    - https://scholar.google.com/citations?user=mLggXRsAAAAJ&hl=en
+    - https://www.linkedin.com/in/rapha%C3%ABl-frank-66925132/
     - https://orbilu.uni.lu/simple-search?query=Raphael+Frank&order=desc&sort_by=issued_dt
-    # - https://orcid.org/0000-0000-0000-0000
-    # - https://scholar.google.com/citations?user=XXXXXXXX
-    # - https://www.linkedin.com/in/XXXXXXXX/
     # - https://dblp.org/pid/XX/XXXX.html
 
 # Build
