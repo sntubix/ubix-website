@@ -1,0 +1,57 @@
+{%- comment -%}
+  Structured data (JSON-LD) telling search engines that this site is about
+  the person Raphael Frank and the UBIX research organisation. The Person
+  `sameAs` array links the entity to authoritative external profiles, which
+  is what lets Google rank this page when someone searches the name.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#raphael-frank",
+      "name": "{{ site.person.name }}",
+      {% if site.person.alternate_name %}"alternateName": "{{ site.person.alternate_name }}",{% endif %}
+      "jobTitle": "{{ site.person.job_title }}",
+      "url": "{{ site.url }}/",
+      {% if site.person.image %}"image": "{{ site.person.image }}",{% endif %}
+      "worksFor": { "@id": "{{ site.url }}/#organization" },
+      "affiliation": {
+        "@type": "Organization",
+        "name": "{{ site.person.affiliation }}",
+        "url": "https://www.uni.lu/snt-en/"
+      },
+      "sameAs": [
+        {%- assign links = site.person.same_as -%}
+        {%- for link in links -%}
+          "{{ link }}"{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "UBIX — Ubiquitous and Intelligent Systems Research Group",
+      "alternateName": "UBIX",
+      "url": "{{ site.url }}/",
+      "logo": "{{ site.url }}/assets/images/ubix-logo.png",
+      "description": "{{ site.description | strip_newlines }}",
+      "founder": { "@id": "{{ site.url }}/#raphael-frank" },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "SnT — Interdisciplinary Centre for Security, Reliability and Trust",
+        "url": "https://www.uni.lu/snt-en/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.title }} — {{ site.tagline }}",
+      "publisher": { "@id": "{{ site.url }}/#organization" },
+      "about": { "@id": "{{ site.url }}/#raphael-frank" }
+    }
+  ]
+}
+</script>

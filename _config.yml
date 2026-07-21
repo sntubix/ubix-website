@@ -1,11 +1,36 @@
 title: UBIX
 tagline: Ubiquitous and Intelligent Systems
 description: >-
-  The UBIX Research Group at SnT, University of Luxembourg, conducts research
-  in distributed artificial intelligence across smart mobility, digital twins,
-  and data-driven energy systems.
+  UBIX is the Ubiquitous and Intelligent Systems research group led by
+  Prof. Raphael Frank at SnT, University of Luxembourg. The group conducts
+  research in distributed and embodied artificial intelligence across smart
+  mobility, autonomous systems, digital twins, and data-driven energy systems.
 url: "https://ubix.group"
 baseurl: ""
+lang: en
+
+# Author / group lead (used by jekyll-seo-tag and structured data)
+author:
+  name: Raphael Frank
+  url: https://www.uni.lu/snt-en/people/raphael-frank/
+
+# Person entity — Raphael Frank. The `sameAs` links are the single most
+# important SEO signal for ranking on the name: they connect this site to
+# authoritative profiles so Google treats them as the same person.
+# Fill in any that apply; remove the rest. More real profiles = stronger signal.
+person:
+  name: Raphael Frank
+  alternate_name: Raphaël Frank
+  job_title: Professor & Chief Scientist, Head of the UBIX Research Group
+  affiliation: SnT, University of Luxembourg
+  image: https://ubix.group/assets/images/raphael-frank.jpg
+  same_as:
+    - https://www.uni.lu/snt-en/people/raphael-frank/
+    - https://orbilu.uni.lu/simple-search?query=Raphael+Frank&order=desc&sort_by=issued_dt
+    # - https://orcid.org/0000-0000-0000-0000
+    # - https://scholar.google.com/citations?user=XXXXXXXX
+    # - https://www.linkedin.com/in/XXXXXXXX/
+    # - https://dblp.org/pid/XX/XXXX.html
 
 # Build
 markdown: kramdown
